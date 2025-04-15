@@ -52,11 +52,10 @@ This modular design using **CrewAI** ensures flexibility and scalability.
 
 ## 📽️ Demo Video
 
-<figure class="video_container">
-  <iframe src="https://raw.githubusercontent.com/kiran-bal/Smart_Hire_AI_Langgraph_CrewAI/main/resources/demo/demo2.webm" frameborder="0" allowfullscreen></iframe>
-</figure>
-
-[![Watch the demo](https://img.shields.io/badge/Watch%20Demo-Click%20Here-blue?logo=github)](https://raw.githubusercontent.com/kiran-bal/Smart_Hire_AI_Langgraph_CrewAI/main/resources/demo/demo2.webm)
+<video width="320" height="240" controls>
+  <source src="https://raw.githubusercontent.com/kiran-bal/Smart_Hire_AI_Langgraph_CrewAI/main/resources/demo/demo2.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
 
 > ⚠️ *If the video does not open directly in your browser, try downloading it or playing it in a compatible media player.*
 
