@@ -1,0 +1,46 @@
+web_search_task:
+  agent: web_search
+  description:  > 
+    Search climate change in wikipedia  website and summarize the content.
+    final output should be a complete dictionary with data field
+  expected_output: >
+    extracted data in a json format where the key data will contain the text content.
+    The final output should be limited to 1000 characters and the dictionary must be strictly enclosed 
+    Return ONLY the contents of the JSON, without any triple quotes like '```', '```json' or any other text.
+    make sure all keys and values are enclosed in double quotes
+    also no '*' symbols allowed in the final output.
+
+blog_writer_task:
+  agent: blog_writer
+  description: generate blog based on the content - {last_node_output}
+  expected_output: >
+    extracted data in a json format where the key data will contain the text content.
+    Return ONLY the contents of the JSON, without any triple quotes like '```', '```json' or any other text.
+    make sure all keys and values are enclosed in double quotes
+    also no '*' symbols allowed in the final output.
+
+pdf_text_extract_task:
+  agent: pdf_text_extract_agent
+  description: > 
+    Extract all text from the PDF file - {pdf_file_path}
+  expected_output: Raw text content of the resume
+
+
+interview_question_generation_task:
+  agent: interview_question_generation_agent
+  description: > 
+    Review the context and generate interview questions based on the resume content.
+    The questions shall range the skills in resume, projects done, casual questions based on his/her name and details.
+    The resume content is - {last_node_output}
+  expected_output: Structured text content of the generated questions
+  context: [pdf_text_extract_task]
+
+email_send_task:
+  agent: email_send_agent
+  description: >
+    Draft an email with a short appropriate subject with formatted body using the content and sent to the recipient - {recipient}
+    You are sending the mail to recipient mail address with the questions so that he can use it for interviewing the candidate
+    recipient name is Kiran Bal
+    The content is - {last_node_output}
+  expected_output: Return the status of the mail in raw text
+  context: [ interview_question_generation_task, pdf_text_extract_task ]

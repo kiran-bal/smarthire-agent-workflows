@@ -1,0 +1,49 @@
+web_search:
+  type: crew
+  agents: [web_search]
+  tasks: [web_search_task]
+  inputs:
+#    web_search_url: str
+  state_fields:
+    web_search_output: dict
+  output_field: web_search_output
+
+
+blog_writer:
+  type: crew
+  agents: [blog_writer]
+  tasks: [blog_writer_task]
+  inputs:
+#    web_search_url: str
+  state_fields:
+    blog_generation_output: dict
+  output_field: blog_generation_output
+
+pdf_text_extraction:
+  type: crew
+  agents: [pdf_text_extract_agent]
+  tasks: [pdf_text_extract_task]
+  inputs:
+    pdf_file_path: str
+  state_fields:
+    pdf_text_extract_output: str
+  output_field: pdf_text_extract_output
+
+interview_qn_generation:
+  type: crew
+  agents: [ interview_question_generation_agent ]
+  tasks: [ interview_question_generation_task ]
+  inputs:
+  state_fields:
+    interview_qns_output: str
+  output_field: interview_qns_output
+
+send_email:
+  type: crew
+  agents: [ email_send_agent ]
+  tasks: [ email_send_task ]
+  inputs:
+    recipient: str
+  state_fields:
+    mail_status_output: str
+  output_field: mail_status_output

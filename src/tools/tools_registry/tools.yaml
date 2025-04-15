@@ -1,0 +1,11 @@
+
+
+web_rag_search_tool:
+  inputs:
+    web_search_url: url
+
+pdf_text_extract_tool:
+  inputs:
+
+gmail_send_tool:
+  inputs:

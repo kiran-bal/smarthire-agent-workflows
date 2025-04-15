@@ -1,0 +1,7 @@
+database:
+  dialect:
+  host:
+  port:
+  name:
+  user:
+  password:
