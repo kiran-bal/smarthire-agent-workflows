@@ -77,9 +77,11 @@ class FunctionalNode(BaseNode):
             return instance
 
         except ImportError as e:
-            raise f"Error importing module {handler_module_path}: {e}"
+            raise ImportError(f"Error importing module {handler_module_path}: {e}") from e
         except AttributeError as e:
-            raise f"Error finding class {class_name} in module {handler_module_path}: {e}"
+            raise AttributeError(
+                f"Error finding class {class_name} in module {handler_module_path}: {e}"
+            ) from e
 
     def __get_agent(self):
         """

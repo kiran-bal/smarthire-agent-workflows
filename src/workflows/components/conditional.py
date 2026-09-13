@@ -23,7 +23,7 @@ class ConditionalWorkflow(BaseWorkflow):
         for node_config in self.config["nodes"]:
             node_name = node_config["name"]
             node = self.node_factory.create_node(node_name, node_config)
-            self.graph.add_node(node_name, node.execute)
+            self.graph.add_node(node_name, self.as_delta(node.execute))
 
         for condition in self.config.get("conditions", []):
             condition_method = getattr(

@@ -1,8 +1,15 @@
+"""
+Builds the factory chain (tools -> agents -> tasks -> nodes -> workflows) for a
+request-supplied configuration. The LLM is chosen from the environment:
+
+    LLM_PROVIDER=ollama   LLM_MODEL=llama3.1          (default)
+    LLM_PROVIDER=openai   LLM_MODEL=gpt-4o-mini       OPENAI_API_KEY=...
+    LLM_PROVIDER=groq     LLM_MODEL=llama-3.3-70b-versatile  GROQ_API_KEY=...
+"""
+
 import os
+
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
-from langchain_groq import ChatGroq
-# from langchain_ollama.chat_models import ChatOllama
 from crewai import LLM
 
 from src.agents.agent_factory import AgentFactory
@@ -12,23 +19,27 @@ from src.tools.tool_factory import ToolFactory
 from src.workflows.workflow_factory import WorkflowFactory
 
 load_dotenv()
-# api_key = os.getenv("OPENAI_API_KEY")
-# model = "gpt-4o-mini"
-# llm = ChatOpenAI(model=model, api_key=api_key, temperature=0.5, streaming=True)
 
-llm = LLM(
-        model="ollama/deepseek-r1:7b",
-        temperature=0.5,
-        base_url="http://localhost:11434"
-)
 
-# llm = ChatGroq(
-#     model='groq/llama-3.3-70b-versatile',
-#     api_key=os.environ.get("GROQ_API_KEY"),
-#     temperature=0.5,
-#     max_tokens=500,
-#     streaming=True
-# )
+def build_llm() -> LLM:
+    provider = os.getenv("LLM_PROVIDER", "ollama").lower()
+    model = os.getenv("LLM_MODEL", "llama3.1")
+    temperature = float(os.getenv("LLM_TEMPERATURE", "0.5"))
+    if provider == "ollama":
+        return LLM(
+            model=f"ollama/{model}",
+            temperature=temperature,
+            base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
+        )
+    if provider == "openai":
+        return LLM(model=model, temperature=temperature, api_key=os.getenv("OPENAI_API_KEY"))
+    if provider == "groq":
+        return LLM(model=f"groq/{model}", temperature=temperature, api_key=os.getenv("GROQ_API_KEY"))
+    raise ValueError(f"Unsupported LLM_PROVIDER: {provider}")
+
+
+llm = build_llm()
+
 
 class DynamicWorkflowOrchestrator:
     """

@@ -38,6 +38,6 @@ class NodeFactory:
                 self.config, self.agent_factory, self.task_factory, node_name
             )
         elif node_type == "ai":
-            return AINode(self.config, self.agent_factory, self.task_factory)
+            return AINode(self.config, self.agent_factory, self.task_factory, node_name)
 
         raise ValueError(f"Unknown node type: {node_type}")

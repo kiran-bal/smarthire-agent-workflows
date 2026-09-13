@@ -27,4 +27,5 @@ python-dotenv==1.0.1
 requests==2.32.3
 sendgrid==6.11.0
 tavily-python==0.5.0
-langchain-ollama==0.2.0
+langchain-ollama==0.2.0setuptools<81  # crewai 0.79 imports pkg_resources
+pytest==8.3.3
