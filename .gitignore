@@ -58,3 +58,8 @@ credentials.json
 token.json
 unit_test.py
 conda_env.txt
+
+# Secrets
+.env
+*.webm
+*.mp4

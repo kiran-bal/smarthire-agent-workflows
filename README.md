@@ -54,6 +54,8 @@ This modular design using **CrewAI** ensures flexibility and scalability.
 
 [![Watch the demo](https://img.shields.io/badge/Watch%20Demo-Click%20Here-blue?logo=github)](https://drive.google.com/file/d/1pjPbhxTma0Qo2r09JSNlb7-SYtct4g-B/view?usp=sharing)
 
+The screen recordings are also attached to the [demo-videos release](https://github.com/kiran-bal/smarthire-agent-workflows/releases/tag/demo-videos).
+
 > ⚠️ *If the video does not open directly in your browser, try downloading it or playing it in a compatible media player.*
 
 ---

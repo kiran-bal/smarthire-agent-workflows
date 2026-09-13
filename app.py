@@ -1,3 +1,6 @@
+import os
+import secrets
+
 from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -11,7 +14,8 @@ load_dotenv()
 def create_app():
     """Flask App"""
     app = Flask(__name__, static_url_path="")
-    app.secret_key = "667-634-197"
+    # Set FLASK_SECRET_KEY in the environment; the random fallback is for local runs only.
+    app.secret_key = os.environ.get("FLASK_SECRET_KEY") or secrets.token_hex(32)
 
     CORS(app)
 
